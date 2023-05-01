@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net6.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DDD.Data\DDD.Infrastructure.csproj" />
+    <ProjectReference Include="..\DDD.Domain\DDD.Domain.csproj" />
+  </ItemGroup>
+
+</Project>

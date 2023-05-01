@@ -1,0 +1,34 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Contracts1\**" />
+    <Compile Remove="Entities1\**" />
+    <Compile Remove="Interfaces1\**" />
+    <EmbeddedResource Remove="Contracts1\**" />
+    <EmbeddedResource Remove="Entities1\**" />
+    <EmbeddedResource Remove="Interfaces1\**" />
+    <None Remove="Contracts1\**" />
+    <None Remove="Entities1\**" />
+    <None Remove="Interfaces1\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="CustomerValidator.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FluentValidation" Version="11.5.2" />
+    <PackageReference Include="MongoDB.Driver" Version="2.19.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Interfaces\Entities\" />
+    <Folder Include="Interfaces\Repositories\" />
+    <Folder Include="Entities\" />
+  </ItemGroup>
+
+</Project>

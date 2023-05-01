@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  ddd.webapi:
+    image: ${DOCKER_REGISTRY-}dddwebapi
+    build:
+      context: .
+      dockerfile: DDD.WebApi\Dockerfile
