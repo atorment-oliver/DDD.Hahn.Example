@@ -5,8 +5,7 @@ namespace DDD.Domain.Interfaces.Repositories
 {
     public interface ICustomerRepository : IRepository<Customer>
     {
-        Customer GetByCPF(string cpf);
-        Customer GetByName(string cpf);
+        Customer GetByName(string name);
         Customer GetById(string id);
         List<Customer> GetCustomers();
     }

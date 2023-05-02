@@ -1,19 +1,23 @@
 ﻿using DDD.Domain.Entities;
 using DDD.Infrastructure.Repositories;
 using Microsoft.AspNetCore.Mvc;
-using MongoDB;
-using System.Xml.Linq;
+using Newtonsoft.Json;
+using System.Text.Json;
 
 namespace DDD.WebApi.Controllers
 {
     public class CustomerController : ControllerBase
     {
-        
+        /// <summary>
+        /// Get customers
+        /// </summary>
         [HttpGet]
-        public IEnumerable<Customer> GetAll()
+        [Route("customer")]
+        [Produces("application/json")]
+        public ActionResult GetAll()
         {
             var customerRepository = new CustomerRepository(null);
-            return customerRepository.GetCustomers().ToArray();
+            return Ok(customerRepository.GetCustomers());
         }
         /// <summary>
         /// Get a customer
@@ -21,7 +25,8 @@ namespace DDD.WebApi.Controllers
         /// <param name="id">id</param>
         /// <returns></returns>
         [HttpGet]
-        [Route("getbyid")]
+        [Route("customer/{id}")]
+        [Produces("application/json")]
         public Customer GetById(string id)
         {
             var customerRepository = new CustomerRepository(null);
@@ -32,16 +37,16 @@ namespace DDD.WebApi.Controllers
         /// </summary>
         /// <param name="name">name</param>
         /// <param name="email">email</param>
-        /// <param name="cpf">cpf</param>
+        /// <param name="address">address</param>
         /// <returns></returns>
         [HttpPost]
-        [Route("create")]
-        public bool Create(string name, string email, string cpf)
+        [Route("create/customer")]
+        public bool Create(string name, string email, string address)
         {
             var customerRepository = new CustomerRepository(null);
             try
             {
-                Customer objCustomer = new Customer(name, email, cpf);
+                Customer objCustomer = new Customer(name, email, address);
                 customerRepository.Create(objCustomer);
                 return true;
             }
@@ -56,16 +61,16 @@ namespace DDD.WebApi.Controllers
         /// <param name="id">id</param>
         /// <param name="name">name</param>
         /// <param name="email">email</param>
-        /// <param name="cpf">cpf</param>
+        /// <param name="address">address</param>
         /// <returns></returns>
-        [HttpPost]
-        [Route("update")]
-        public bool Update(string id, string name, string email, string cpf)
+        [HttpPut]
+        [Route("update/customer")]
+        public bool Update(string id, string name, string email, string address)
         {
             var customerRepository = new CustomerRepository(null);
             try
             {
-                Customer objCustomer = new Customer(id, name, email, cpf);
+                Customer objCustomer = new Customer(id, name, email, address);
                 customerRepository.Update(objCustomer);
                 return true;
             }

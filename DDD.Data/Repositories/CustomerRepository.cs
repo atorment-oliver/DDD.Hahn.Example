@@ -3,6 +3,8 @@ using DDD.Domain.Entities;
 using DDD.Domain.Interfaces.Repositories;
 using System.Collections.Generic;
 using MongoDB.Bson;
+using System;
+using System.Reflection.Metadata;
 
 namespace DDD.Infrastructure.Repositories
 {
@@ -13,26 +15,21 @@ namespace DDD.Infrastructure.Repositories
         {
            
         }
-
-        public Customer GetByCPF(string cpf)
+        public Customer GetByName(string name)
         {
-            var customers = _database.GetCollection<Customer>("customer");
-            return customers.Find(c => c.CPF == cpf).FirstOrDefault();
-        }
+            var customers = _database.GetCollection<Customer>("Customer");
 
-        public Customer GetByName(string cpf)
-        {
-            var customers = _database.GetCollection<Customer>("customer");
-            return customers.Find(c => c.CPF == cpf).FirstOrDefault();
+            var filter = Builders<Customer>.Filter.Eq("Name", name);
+            return  customers.Find(filter: filter).FirstOrDefault();
         }
         public Customer GetById(string id)
         {
-            var customers = _database.GetCollection<Customer>("customer");
+            var customers = _database.GetCollection<Customer>("Customer");
             return customers.Find(c => c.Id.ToString() == id).FirstOrDefault();
         }
         public List<Customer> GetCustomers()
         {
-            var customers = _database.GetCollection<Customer>("customer");
+            var customers = _database.GetCollection<Customer>("Customer");
             return customers.Find(c => 1 == 1).ToList();
         }
     }

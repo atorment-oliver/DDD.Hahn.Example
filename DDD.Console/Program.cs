@@ -12,19 +12,22 @@ namespace DDD.Console
         {
             System.Console.WriteLine("Hello World!");
 
+            var customerRepository = new CustomerRepository(null);
+            var result = customerRepository.GetByName("John");
+
             //var customer = new Customer("john smith", "john@gmail.com", "30324510004");
             //var validator = new CustomerValidator();
             //var validationResult = validator.Validate(customer);
 
-            var customer = new Customer("bill smith", "bill@gmail.com", "90324510004");
-            var validator = new CustomerValidator();
-            var validationResult = validator.Validate(customer);
+            //var customer = new Customer("bill smith", "bill@gmail.com", "90324510004");
+            //var validator = new CustomerValidator();
+            //var validationResult = validator.Validate(customer);
 
-            if (validationResult.IsValid)
-            {
-                var customerRepository = new CustomerRepository(null);
-                customerRepository.Create(customer);
-            }
+            //if (validationResult.IsValid)
+            //{
+            //    var customerRepository = new CustomerRepository(null);
+            //    customerRepository.Create(customer);
+            //}
 
             //var customer = new Customer(MongoDB.Bson.ObjectId.Parse("644c28d6a654c612f0c4adc6"), "john connor", "john.connor@hotmail.com", "30324510004");
             //var validator = new CustomerValidator();
