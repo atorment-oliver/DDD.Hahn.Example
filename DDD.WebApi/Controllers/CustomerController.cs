@@ -15,13 +15,27 @@ namespace DDD.WebApi.Controllers
             var customerRepository = new CustomerRepository(null);
             return customerRepository.GetCustomers().ToArray();
         }
-        [HttpGet("{id}")]
+        /// <summary>
+        /// Get a customer
+        /// </summary>
+        /// <param name="id">id</param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("getbyid")]
         public Customer GetById(string id)
         {
             var customerRepository = new CustomerRepository(null);
             return customerRepository.GetById(id);
         }
+        /// <summary>
+        /// Create a customer
+        /// </summary>
+        /// <param name="name">name</param>
+        /// <param name="email">email</param>
+        /// <param name="cpf">cpf</param>
+        /// <returns></returns>
         [HttpPost]
+        [Route("create")]
         public bool Create(string name, string email, string cpf)
         {
             var customerRepository = new CustomerRepository(null);
@@ -36,7 +50,16 @@ namespace DDD.WebApi.Controllers
                 return false;
             }
         }
+        /// <summary>
+        /// Update a customer
+        /// </summary>
+        /// <param name="id">id</param>
+        /// <param name="name">name</param>
+        /// <param name="email">email</param>
+        /// <param name="cpf">cpf</param>
+        /// <returns></returns>
         [HttpPost]
+        [Route("update")]
         public bool Update(string id, string name, string email, string cpf)
         {
             var customerRepository = new CustomerRepository(null);
@@ -51,7 +74,13 @@ namespace DDD.WebApi.Controllers
                 return false;
             }
         }
+        /// <summary>
+        /// Delete a customer
+        /// </summary>
+        /// <param name="id">id</param>
+        /// <returns></returns>
         [HttpPost]
+        [Route("delete")]
         public bool Delete(string id)
         {
             var customerRepository = new CustomerRepository(null);
