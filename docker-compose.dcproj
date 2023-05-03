@@ -2,11 +2,8 @@
 <Project ToolsVersion="15.0" Sdk="Microsoft.Docker.Sdk">
   <PropertyGroup Label="Globals">
     <ProjectVersion>2.1</ProjectVersion>
-    <DockerTargetOS>Windows</DockerTargetOS>
-    <ProjectGuid>924ebaea-a0f9-4dcf-9679-f69a58f438b9</ProjectGuid>
-    <DockerLaunchAction>LaunchBrowser</DockerLaunchAction>
-    <DockerServiceUrl>{Scheme}://{ServiceIPAddress}{ServicePort}/swagger</DockerServiceUrl>
-    <DockerServiceName>ddd.webapi</DockerServiceName>
+    <DockerTargetOS>Linux</DockerTargetOS>
+    <ProjectGuid>08318899-9161-4b74-9033-757dd375e9c3</ProjectGuid>
   </PropertyGroup>
   <ItemGroup>
     <None Include="docker-compose.override.yml">

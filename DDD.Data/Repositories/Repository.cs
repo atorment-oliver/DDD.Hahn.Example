@@ -12,7 +12,7 @@ namespace DDD.Infrastructure.Repositories
         public Repository(IMongoClient mongoClient)
         {
             //_mongoClient = mongoClient;
-            var connectionString = "mongodb://localhost:27017/mydb";
+            var connectionString = "mongodb://root:secret@192.168.1.188:27017?readPreference=primary&appname=MongoDB%20Compass&ssl=false";
             _client = new MongoClient(connectionString);
             _database = _client.GetDatabase("mydb");
         }
