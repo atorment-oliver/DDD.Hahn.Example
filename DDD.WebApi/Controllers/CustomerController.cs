@@ -1,4 +1,6 @@
 ﻿using DDD.Domain.Entities;
+using DDD.Domain.Interfaces.Entities;
+using DDD.Domain.Interfaces.Repositories;
 using DDD.Infrastructure.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -12,7 +14,7 @@ namespace DDD.WebApi.Controllers
         /// Get customers
         /// </summary>
         [HttpGet]
-        [Route("customer")]
+        [Route("Customer")]
         [Produces("application/json")]
         public ActionResult GetAll()
         {
@@ -25,28 +27,25 @@ namespace DDD.WebApi.Controllers
         /// <param name="id">id</param>
         /// <returns></returns>
         [HttpGet]
-        [Route("customer/{id}")]
+        [Route("Customer/{id}")]
         [Produces("application/json")]
-        public Customer GetById(string id)
+        public ActionResult GetById(string id)
         {
             var customerRepository = new CustomerRepository(null);
-            return customerRepository.GetById(id);
+            return Ok(customerRepository.GetById(id));
         }
         /// <summary>
         /// Create a customer
         /// </summary>
-        /// <param name="name">name</param>
-        /// <param name="email">email</param>
-        /// <param name="address">address</param>
         /// <returns></returns>
         [HttpPost]
-        [Route("create/customer")]
-        public bool Create(string name, string email, string address)
+        [Route("Customer")]
+        public bool Create([FromBody] Customer customer)
         {
             var customerRepository = new CustomerRepository(null);
             try
             {
-                Customer objCustomer = new Customer(name, email, address);
+                DDD.Domain.Entities.Customer objCustomer = new DDD.Domain.Entities.Customer(customer.name, customer.email, customer.address);
                 customerRepository.Create(objCustomer);
                 return true;
             }
@@ -59,18 +58,16 @@ namespace DDD.WebApi.Controllers
         /// Update a customer
         /// </summary>
         /// <param name="id">id</param>
-        /// <param name="name">name</param>
-        /// <param name="email">email</param>
-        /// <param name="address">address</param>
+        /// <param name="customer">customer</param>
         /// <returns></returns>
         [HttpPut]
-        [Route("update/customer")]
-        public bool Update(string id, string name, string email, string address)
+        [Route("Customer/{id}")]
+        public bool Update(string id, [FromBody] Customer customer)
         {
             var customerRepository = new CustomerRepository(null);
             try
             {
-                Customer objCustomer = new Customer(id, name, email, address);
+                DDD.Domain.Entities.Customer objCustomer = new DDD.Domain.Entities.Customer(id, customer.name, customer.email, customer.address);
                 customerRepository.Update(objCustomer);
                 return true;
             }
@@ -84,8 +81,8 @@ namespace DDD.WebApi.Controllers
         /// </summary>
         /// <param name="id">id</param>
         /// <returns></returns>
-        [HttpPost]
-        [Route("delete")]
+        [HttpDelete]
+        [Route("Customer/{id}")]
         public bool Delete(string id)
         {
             var customerRepository = new CustomerRepository(null);

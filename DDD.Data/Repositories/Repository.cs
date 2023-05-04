@@ -26,13 +26,13 @@ namespace DDD.Infrastructure.Repositories
         public void Delete(string id)
         {
             var collection = _database.GetCollection<T>(typeof(T).Name);
-            collection.DeleteOne(c => c.Id.ToString() == id);
+            collection.DeleteOne(c => c.id.ToString() == id);
         }
 
         public void Update(T entity)
         {
             var customers = _database.GetCollection<T>(typeof(T).Name);
-            customers.ReplaceOne(Builders<T>.Filter.Eq(r => r.Id, entity.Id), entity, new UpdateOptions() { IsUpsert = true });
+            customers.ReplaceOne(Builders<T>.Filter.Eq(r => r.id, entity.id), entity, new UpdateOptions() { IsUpsert = true });
         }
     }
 }

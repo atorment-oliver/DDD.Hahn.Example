@@ -5,24 +5,24 @@ namespace DDD.Domain.Entities
 {
     public class Customer : IEntity<ObjectId>
     {
-        public ObjectId Id { get; set; }
-        public string Name { get; private set; }
-        public string Email { get; private set; }
-        public string Address { get; private set; }
+        public ObjectId id { get; set; }
+        public string name { get; set; }
+        public string email { get; set; }
+        public string address { get; set; }
 
         public Customer(string name, string email, string address)
         {
-            Id = ObjectId.GenerateNewId();
-            this.Name = name;
-            this.Email = email;
-            this.Address = address;
+            id = ObjectId.GenerateNewId();
+            this.name = name;
+            this.email = email;
+            this.address = address;
         }
         public Customer(string id, string name, string email, string address)
         {
-            this.Id = new ObjectId(id);
-            this.Name = name;
-            this.Email = email;
-            this.Address = address;
+            this.id = new ObjectId(id);
+            this.name = name;
+            this.email = email;
+            this.address = address;
         }
     }
 }

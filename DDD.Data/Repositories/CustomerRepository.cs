@@ -25,7 +25,7 @@ namespace DDD.Infrastructure.Repositories
         public Customer GetById(string id)
         {
             var customers = _database.GetCollection<Customer>("Customer");
-            return customers.Find(c => c.Id.ToString() == id).FirstOrDefault();
+            return customers.Find(c => c.id.ToString() == id).FirstOrDefault();
         }
         public List<Customer> GetCustomers()
         {

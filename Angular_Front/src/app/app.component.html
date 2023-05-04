@@ -1,0 +1,64 @@
+<div class="container">
+  <div class="row text-center mt-4">
+    <div class="col">
+      <img src="https://s40198.pcdn.co/uk/wp-content/uploads/sites/2/2016/01/customer.jpg" alt=""
+        class="img-fluid" width="200px">
+    </div>
+  </div>
+  <div class="row text-center mt-5">
+    <div class="col">
+      <h2>CRUD Customer</h2>
+    </div>
+  </div>
+  <div class="row mt-5">
+    <div class="col-md-2">
+      <label for="txtId" class="from-label">ID</label>
+      <input type="text" name="id" id="txtId" class="form-control" [(ngModel)]="customer.id" disabled="true">
+    </div>
+    <div class="col-md-4">
+      <label for="txtName" class="from-label">Name</label>
+      <input type="text" name="id" id="txt" class="form-control" [(ngModel)]="customer.name">
+    </div>
+    <div class="col-md-2">
+      <label for="txtEmail" class="from-label">Email</label>
+      <input type="text" name="id" id="txtEmail" class="form-control" [(ngModel)]="customer.email">
+    </div>
+    <div class="col-md-4">
+      <label for="txtAddress" class="from-label">Address</label>
+      <input type="text" name="id" id="txtAddress" class="form-control" [(ngModel)]="customer.address">
+    </div>
+  </div>
+  <div class="row mt-5">
+    <div class="col">
+      <button class="btn btn-success" type="button" (click)="onAddCustomer(customer)">Add</button>
+      <button class="btn btn-warning m-2" type="button" (click)="onUpdateCustomer(customer)">Edit</button>
+      <button class="btn btn-danger" type="button" (click)="onDeleteCustomer(customer.id)">Delete</button>
+      <button class="btn btn-primary m-2" type="button" (click)="clear()">Clear</button>
+    </div>
+    
+  </div>
+  <div class="row mt-5">
+    <div class="col">
+      <table id="dtcustomer" class="table table-striped" style="width: 100%;">
+        <thead>
+          <tr>
+            <th>Select</th>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Address</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of datatable">
+            <td><input type="button" value="Select" (click)="onSetData(item)"></td>
+            <td> {{ item.id }} </td>
+            <td>{{ item.name }}</td>
+            <td>{{ item.email }}</td>
+            <td>{{ item.address }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
