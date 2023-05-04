@@ -46,8 +46,17 @@ namespace DDD.WebApi.Controllers
             try
             {
                 DDD.Domain.Entities.Customer objCustomer = new DDD.Domain.Entities.Customer(customer.name, customer.email, customer.address);
-                customerRepository.Create(objCustomer);
-                return true;
+                var validator = new Domain.Contracts.CustomerValidator();
+                var validationResult = validator.Validate(objCustomer);
+                if (validationResult.IsValid)
+                {
+                    customerRepository.Create(objCustomer);
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
             catch (Exception error)
             { 
@@ -68,8 +77,17 @@ namespace DDD.WebApi.Controllers
             try
             {
                 DDD.Domain.Entities.Customer objCustomer = new DDD.Domain.Entities.Customer(id, customer.name, customer.email, customer.address);
-                customerRepository.Update(objCustomer);
-                return true;
+                var validator = new Domain.Contracts.CustomerValidator();
+                var validationResult = validator.Validate(objCustomer);
+                if (validationResult.IsValid)
+                {
+                    customerRepository.Update(objCustomer);
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
             catch (Exception error)
             {
